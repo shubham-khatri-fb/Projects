@@ -1,0 +1,36 @@
+# p = Axlsx::Package.new
+# p.workbook do |wb|
+#     #wb = xlsx_package.workbook
+#     wb.add_worksheet(name: "Transaction History") do |sheet|
+#         # Create the header row
+#         sheet.add_row ["Transaction id", "Transaction Made With", "Transaction type", "Amount Transfer", "Conversion Rate"]
+#         # Create entries for each item
+#         @items.each do |item|
+#             p item
+#             p item.amount_transfer
+#             sheet.add_row [item.id, item.user_id_transaction_made, item.transaction_type, item.amount_transfer, item.conversion_rate]
+#         end
+
+#         # {
+#         #     "id": 46,
+#         #     "user_id": 1,
+#         #     "user_id_transaction_made": 1,
+#         #     "all_transaction_id": 46,
+#         #     "transaction_type": "CHANGE_CURRENCY",
+#         #     "conversion_rate": "1.0",
+#         #     "amount_transfer": "2.0",
+#         #     "transfer_currency_type": 1,
+#         #     "receive_currency_type": 0,
+#         #     "created_at": "2022-07-01T06:40:44.016Z",
+#         #     "updated_at": "2022-07-01T06:40:44.016Z"
+#         # }
+#     end
+#end
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Transaction History") do |sheet|
+    sheet.add_row ["Transaction id", "Transaction Made With", "Transaction type", "Amount Transfer", "Conversion Rate"]
+    @item.each do |item|
+        sheet.add_row [item.id, item.user_id_transaction_made, item.transaction_type, item.amount_transfer, item.conversion_rate]
+    end
+end
