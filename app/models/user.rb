@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :user_transactions
     has_many :user_currencies
-    #validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
     #validates :email, format: {with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i}
     #validates_format_of  :email, :with => /[^\s]@[^\s]/
     #validates :email, email_format: { message: 'Invalid email format' }
