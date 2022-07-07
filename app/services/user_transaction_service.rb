@@ -48,6 +48,10 @@ class UserTransactionService
         @all_transaction = UserTransaction.joins(:all_transaction).filter(user,params).select('user_transactions.*','all_transactions.*').page(params[:pages]).per(params[:per_page] || 5)
     end
 
+    def all_transaction_download(user, params)
+        @all_transaction = UserTransaction.joins(:all_transaction).filter(user,params).select('user_transactions.*','all_transactions.*')
+    end
+
 
     def make_transaction(current_user, params)
         if params[:receiver].nil? or params[:sender_currency_type].nil? or params[:receiver_currency_type].nil? or params[:amount].nil? 

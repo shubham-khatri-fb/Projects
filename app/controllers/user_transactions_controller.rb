@@ -11,7 +11,7 @@ class UserTransactionsController < ApplicationController
     end
 
     def download_excel
-        @item = @user_transaction.all_transaction(@current_user, params)
+        @item = @user_transaction.all_transaction_download(@current_user, params)
         respond_to do |format|
             format.xlsx {
                 response.headers['Content-Disposition'] = 'attachment; filename="transaction_history.xlsx"'
