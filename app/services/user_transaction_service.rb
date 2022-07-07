@@ -45,7 +45,7 @@ class UserTransactionService
     end
 
     def all_transaction(user, params)
-        @all_transaction = UserTransaction.joins(:all_transaction).filter(user,params).select('user_transactions.*','all_transactions.*').page(params[:pages]).per(params[:per_page])
+        @all_transaction = UserTransaction.joins(:all_transaction).filter(user,params).select('user_transactions.*','all_transactions.*').page(params[:pages]).per(params[:per_page] || 5)
     end
 
 
