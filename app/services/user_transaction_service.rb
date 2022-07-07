@@ -11,7 +11,7 @@ class UserTransactionService
             currency = user.user_currencies.find_by(user_id: user_id, currency_type: currency_type)
         end
         currency.amount = currency.amount - amount.to_d
-        currency.save
+        currency.save!
 
     end
 
