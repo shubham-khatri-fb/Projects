@@ -12,8 +12,11 @@ class ApplicationController < ActionController::Base
     private
   
     def authorized
+      logged_in_user_id = nil
       logged_in_user_id = UserService.new.logged_in? request
-      @current_user = User.find(logged_in_user_id)
+      if !logged_in_user_id.nil?
+        @current_user = User.find(logged_in_user_id)
+      end
       render json: { message: 'Please log in' }, status: :unauthorized unless logged_in_user_id
     end
     
