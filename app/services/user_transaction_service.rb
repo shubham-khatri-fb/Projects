@@ -7,7 +7,7 @@ class UserTransactionService
         currency = nil
         currency = user.user_currencies.find_by(currency_type: currency_type)
         if currency.nil?
-            user.user_currencies.create(amount: 0, currency_type: currency_type)
+            user.user_currencies.create!(amount: 0, currency_type: currency_type)
             currency = user.user_currencies.find_by(user_id: user_id, currency_type: currency_type)
         end
         currency.amount = currency.amount - amount.to_d
@@ -22,7 +22,7 @@ class UserTransactionService
         currency =  nil
         currency = user.user_currencies.find_by(currency_type: currency_type)
         if currency.nil?
-            user.user_currencies.create(amount: 0, currency_type: currency_type)
+            user.user_currencies.create!(amount: 0, currency_type: currency_type)
             currency = user.user_currencies.find_by(currency_type: currency_type)
         end
         currency.amount = currency.amount + amount.to_d
@@ -36,7 +36,7 @@ class UserTransactionService
         currency = nil
         currency = user.user_currencies.find_by(currency_type: currency_type)
         if currency.nil?
-            user.user_currencies.create(amount: 0, currency_type: currency_type)
+            user.user_currencies.create!(amount: 0, currency_type: currency_type)
             currency = user.user_currencies.find_by(user_id: user, currency_type: currency_type)
         end 
         if currency.amount < amount.to_f
