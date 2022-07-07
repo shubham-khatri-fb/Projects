@@ -31,8 +31,7 @@ class UserService
     end
 
     def upload_image(user,params)
-        user.avatar = params[:image]
-        user.save!
+        user.update!(avatar:params[:image])
     end
 
 
