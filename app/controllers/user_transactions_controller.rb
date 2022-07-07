@@ -1,7 +1,5 @@
 class UserTransactionsController < ApplicationController
-    #skip_before_action :verify_authenticity_token
-    #skip_before_action :authorized, only: [:all_transaction, :download_excel]
-    before_action :verify_user
+    after_action :set_pagination_headers, only: [:all_transaction]
 
     def initialize
         @user_transaction = UserTransactionService.new
@@ -9,11 +7,11 @@ class UserTransactionsController < ApplicationController
 
 
     def all_transaction
-        @transaction = @user_transaction.all_transaction(params)
+        @transaction = @user_transaction.all_transaction(@current_user, params)
     end
 
     def download_excel
-        @item = @user_transaction.all_transaction(params)
+        @item = @user_transaction.all_transaction_download(@current_user, params)
         respond_to do |format|
             format.xlsx {
                 response.headers['Content-Disposition'] = 'attachment; filename="transaction_history.xlsx"'
@@ -22,22 +20,22 @@ class UserTransactionsController < ApplicationController
     end
 
     def make_transaction
-        @user_transaction.make_transaction(params)
+        @user_transaction.make_transaction(@current_user, params)
         render json: {message:  "Successfully made the transfer"}
     end
 
     def deposit_money
-        @user_transaction.deposit_money(params)
+        @user_transaction.deposit_money(@current_user,params)
         render json: {message:  "Successfully deposit money"}
     end
 
     def withdrawal_money
-        @user_transaction.withdrawal_money(params)
+        @user_transaction.withdrawal_money(@current_user, params)
         render json:{message: "Successfully withdraw money"}
     end
 
     def change_currency
-        @user_transaction.change_currency(params)
+        @user_transaction.change_currency(@current_user,params)
         render json: {message:  "Succesfully change the currency"}
     end
 
@@ -48,5 +46,10 @@ class UserTransactionsController < ApplicationController
             render json: {message: "User don't have Permission for the operation"}, status: 421
         end
     end
+
+    def set_pagination_headers
+        headers["X-Total-Count"] = @transaction.total_count
+    end
+
 
 end

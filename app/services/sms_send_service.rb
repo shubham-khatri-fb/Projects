@@ -9,8 +9,8 @@ class SmsSendService
     def send_message(msg, phone_number)
         # account_sid = ENV['TWILIO_ACCOUNT_SID']
         # auth_token = ENV['TWILIO_AUTH_TOKEN']
-        account_sid =  ENV["TWILIO_ACCOUNT_SID"]
-        auth_token =  ENV["TWILIO_AUTH_TOKEN"]
+        account_sid =  Settings.TWILIO_ACCOUNT_SID
+        auth_token =  Settings.TWILIO_AUTH_TOKEN
         @client = Twilio::REST::Client.new(account_sid, auth_token)
 
         message = @client.messages

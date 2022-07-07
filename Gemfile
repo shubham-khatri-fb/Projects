@@ -41,6 +41,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 
@@ -59,4 +61,14 @@ gem 'carrierwave'
 
 # for email validation
 gem 'validates_email_format_of'
-gem 'dotenv-rails'
+#gem 'dotenv-rails'
+
+# for 2FA otp active model
+gem 'active_model_otp'
+
+# config 
+gem 'config'
+gem 'whenever'
+gem 'kaminari'
+
+
